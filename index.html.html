@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>La Tiendita de Leo y Lali</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#0b0b0d;
+color:white;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(10,10,10,.95);
+backdrop-filter:blur(10px);
+padding:20px 5%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+font-size:32px;
+font-weight:700;
+background:linear-gradient(135deg,#f5d67b,#c89b3c);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+nav{
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:.3s;
+}
+
+nav a:hover{
+color:#f5d67b;
+}
+
+/* HERO */
+
+.hero{
+height:85vh;
+background:
+linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
+url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1600&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero h1{
+font-size:70px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:22px;
+color:#ddd;
+}
+
+/* GENERAL */
+
+section{
+padding:80px 5%;
+}
+
+.titulo{
+font-size:48px;
+margin-bottom:45px;
+text-align:center;
+}
+
+/* PRODUCTOS */
+
+.productos{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:25px;
+}
+
+.card{
+background:#18181c;
+border-radius:22px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.06);
+box-shadow:0 15px 35px rgba(0,0,0,.4);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:240px;
+object-fit:cover;
+display:block;
+}
+
+.info{
+padding:20px;
+}
+
+.info h3{
+font-size:24px;
+margin-bottom:10px;
+}
+
+.precio{
+font-size:28px;
+font-weight:700;
+margin-bottom:18px;
+color:white;
+}
+
+.btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:14px;
+background:linear-gradient(135deg,#c89b3c,#f5d67b);
+color:#111;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:hover{
+transform:scale(1.03);
+}
+
+/* INSTAGRAM */
+
+.instagram{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.insta-card{
+background:#18181c;
+border-radius:22px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.insta-card img{
+width:100%;
+height:260px;
+object-fit:cover;
+display:block;
+}
+
+.insta-info{
+padding:18px;
+}
+
+.likes{
+font-size:18px;
+font-weight:600;
+margin-bottom:12px;
+color:#f5d67b;
+}
+
+.comentarios p{
+margin-bottom:8px;
+font-size:14px;
+}
+
+.comentarios b{
+color:#f5d67b;
+}
+
+/* BOTONES FLOTANTES */
+
+.carrito-btn{
+position:fixed;
+right:20px;
+bottom:20px;
+width:75px;
+height:75px;
+border:none;
+border-radius:50%;
+background:linear-gradient(135deg,#c89b3c,#f5d67b);
+font-size:32px;
+cursor:pointer;
+z-index:999;
+box-shadow:0 15px 30px rgba(0,0,0,.4);
+}
+
+.whatsapp-btn{
+position:fixed;
+left:20px;
+bottom:20px;
+width:75px;
+height:75px;
+background:#25d366;
+color:white;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:35px;
+text-decoration:none;
+z-index:999;
+box-shadow:0 15px 30px rgba(0,0,0,.4);
+}
+
+/* POPUP */
+
+.popup{
+position:fixed;
+right:20px;
+bottom:110px;
+width:340px;
+background:#18181c;
+padding:25px;
+border-radius:22px;
+display:none;
+z-index:9999;
+box-shadow:0 15px 35px rgba(0,0,0,.4);
+border:1px solid rgba(255,255,255,.08);
+}
+
+.popup p{
+margin:15px 0;
+color:#ccc;
+}
+
+/* CARRITO */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.75);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+z-index:99999;
+}
+
+.carrito-box{
+background:#141416;
+width:100%;
+max-width:1150px;
+border-radius:25px;
+padding:25px;
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:25px;
+}
+
+.lista{
+background:#1c1c20;
+border-radius:20px;
+padding:25px;
+}
+
+.resumen{
+background:#1c1c20;
+border-radius:20px;
+padding:25px;
+height:fit-content;
+}
+
+.item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 0;
+border-bottom:1px solid rgba(255,255,255,.08);
+gap:20px;
+}
+
+.item-left{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.item img{
+width:90px;
+height:90px;
+border-radius:12px;
+object-fit:cover;
+}
+
+.item h3{
+font-size:20px;
+}
+
+.item p{
+font-size:20px;
+margin-top:5px;
+}
+
+.cantidad{
+display:flex;
+align-items:center;
+border:1px solid rgba(255,255,255,.08);
+border-radius:12px;
+overflow:hidden;
+background:#1f1f22;
+}
+
+.cantidad button{
+width:40px;
+height:40px;
+border:none;
+background:linear-gradient(135deg,#c89b3c,#f5d67b);
+color:#111;
+font-size:24px;
+font-weight:700;
+cursor:pointer;
+}
+
+.cantidad span{
+width:45px;
+text-align:center;
+font-size:20px;
+color:white;
+}
+
+select{
+width:100%;
+padding:14px;
+margin-top:10px;
+margin-bottom:20px;
+border:none;
+border-radius:10px;
+background:#2a2a2e;
+color:white;
+font-size:16px;
+}
+
+.total{
+font-size:46px;
+font-weight:700;
+margin:20px 0;
+}
+
+/* CUPON */
+
+.cupon-box{
+display:flex;
+gap:10px;
+margin-top:15px;
+margin-bottom:20px;
+}
+
+.cupon-box input{
+flex:1;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#2a2a2e;
+color:white;
+font-size:16px;
+outline:none;
+}
+
+.cupon-box button{
+padding:14px 18px;
+border:none;
+border-radius:12px;
+background:linear-gradient(135deg,#c89b3c,#f5d67b);
+font-weight:700;
+cursor:pointer;
+color:#111;
+}
+
+/* HISTORIA */
+
+.historia-modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.75);
+backdrop-filter:blur(8px);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999999;
+padding:20px;
+}
+
+.historia-box{
+width:100%;
+max-width:700px;
+height:500px;
+background:rgba(20,20,22,.92);
+border-radius:30px;
+overflow:hidden;
+position:relative;
+padding:40px;
+}
+
+.cerrar-historia{
+position:absolute;
+top:20px;
+right:20px;
+width:40px;
+height:40px;
+border:none;
+border-radius:50%;
+background:linear-gradient(135deg,#c89b3c,#f5d67b);
+color:#111;
+font-size:20px;
+font-weight:700;
+cursor:pointer;
+z-index:10;
+}
+
+.historia-scroll{
+position:absolute;
+width:85%;
+left:50%;
+transform:translateX(-50%);
+animation:subirHistoria 28s linear infinite;
+text-align:center;
+}
+
+.historia-scroll h2{
+font-size:40px;
+margin-bottom:40px;
+background:linear-gradient(135deg,#f5d67b,#c89b3c);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.historia-scroll p{
+font-size:22px;
+line-height:2;
+margin-bottom:40px;
+}
+
+@keyframes subirHistoria{
+
+0%{
+top:100%;
+}
+
+100%{
+top:-120%;
+}
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+header{
+flex-direction:column;
+gap:15px;
+padding:20px;
+}
+
+.logo{
+font-size:26px;
+text-align:center;
+}
+
+nav{
+justify-content:center;
+gap:14px;
+}
+
+nav a{
+font-size:14px;
+}
+
+.hero{
+height:70vh;
+padding:20px;
+}
+
+.hero h1{
+font-size:38px;
+line-height:1.1;
+}
+
+.hero p{
+font-size:17px;
+}
+
+.titulo{
+font-size:34px;
+}
+
+.productos{
+grid-template-columns:1fr;
+}
+
+.instagram{
+grid-template-columns:1fr;
+}
+
+.carrito-box{
+grid-template-columns:1fr;
+padding:15px;
+max-height:90vh;
+overflow:auto;
+}
+
+.item{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.cupon-box{
+flex-direction:column;
+}
+
+.popup{
+width:90%;
+right:5%;
+}
+
+.historia-box{
+height:420px;
+padding:25px;
+}
+
+.historia-scroll h2{
+font-size:30px;
+}
+
+.historia-scroll p{
+font-size:18px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+La Tiendita de Leo y Lali
+</div>
+
+<nav>
+<a href="#poleras">Poleras</a>
+<a href="#tazones">Tazones</a>
+<a href="#shoperos">Shoperos</a>
+<a href="#instagram">Instagram</a>
+
+<a href="#" onclick="abrirHistoria()">
+Conoce Nuestra Tienda
+</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div>
+
+<h1>Productos Personalizados</h1>
+
+<p>
+Tazones, poleras y regalos premium
+</p>
+
+</div>
+
+</section>
+
+<!-- POLERAS -->
+
+<section id="poleras">
+
+<h2 class="titulo">Poleras</h2>
+
+<div class="productos">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1000&auto=format&fit=crop">
+
+<div class="info">
+
+<h3>Polera Gamer</h3>
+
+<div class="precio">$14.990</div>
+
+<button class="btn"
+onclick="agregarProducto('Polera Gamer',14990,'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1000&auto=format&fit=crop')">
+Agregar al carrito
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=1000&auto=format&fit=crop">
+
+<div class="info">
+
+<h3>Polera Anime</h3>
+
+<div class="precio">$16.990</div>
+
+<button class="btn"
+onclick="agregarProducto('Polera Anime',16990,'https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=1000&auto=format&fit=crop')">
+Agregar al carrito
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TAZONES -->
+
+<section id="tazones">
+
+<h2 class="titulo">Tazones</h2>
+
+<div class="productos">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop">
+
+<div class="info">
+
+<h3>Tazón Mágico</h3>
+
+<div class="precio">$11.990</div>
+
+<button class="btn"
+onclick="agregarProducto('Tazón Mágico',11990,'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop')">
+Agregar al carrito
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1577937927133-66ef06acdf18?q=80&w=1000&auto=format&fit=crop">
+
+<div class="info">
+
+<h3>Tazón Premium</h3>
+
+<div class="precio">$13.990</div>
+
+<button class="btn"
+onclick="agregarProducto('Tazón Premium',13990,'https://images.unsplash.com/photo-1577937927133-66ef06acdf18?q=80&w=1000&auto=format&fit=crop')">
+Agregar al carrito
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SHOPEROS -->
+
+<section id="shoperos">
+
+<h2 class="titulo">Shoperos</h2>
+
+<div class="productos">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1000&auto=format&fit=crop">
+
+<div class="info">
+
+<h3>Shopero Premium</h3>
+
+<div class="precio">$18.990</div>
+
+<button class="btn"
+onclick="agregarProducto('Shopero Premium',18990,'https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1000&auto=format&fit=crop')">
+Agregar al carrito
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000&auto=format&fit=crop">
+
+<div class="info">
+
+<h3>Shopero Grabado</h3>
+
+<div class="precio">$15.990</div>
+
+<button class="btn"
+onclick="agregarProducto('Shopero Grabado',15990,'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000&auto=format&fit=crop')">
+Agregar al carrito
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- INSTAGRAM -->
+
+<section id="instagram">
+
+<h2 class="titulo">
+Instagram
+</h2>
+
+<div class="instagram">
+
+<div class="insta-card">
+
+<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop">
+
+<div class="insta-info">
+
+<div class="likes">
+❤️ 2.431 Me gusta
+</div>
+
+<div class="comentarios">
+
+<p><b>@camila_design</b> Hermoso trabajo 😍</p>
+<p><b>@franco_gamer</b> Necesito uno personalizado 🔥</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="insta-card">
+
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1000&auto=format&fit=crop">
+
+<div class="insta-info">
+
+<div class="likes">
+❤️ 1.982 Me gusta
+</div>
+
+<div class="comentarios">
+
+<p><b>@danii_store</b> La calidad se ve premium ✨</p>
+<p><b>@martin.cl</b> Muy buenas poleras 👏</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="insta-card">
+
+<img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1000&auto=format&fit=crop">
+
+<div class="insta-info">
+
+<div class="likes">
+❤️ 3.104 Me gusta
+</div>
+
+<div class="comentarios">
+
+<p><b>@leo_custom</b> Quedó increíble 🍺</p>
+<p><b>@vale.shop</b> Quiero uno para regalo ❤️</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- BOTON WHATSAPP -->
+
+<a href="https://wa.me/56900000000" target="_blank" class="whatsapp-btn">
+💬
+</a>
+
+<!-- BOTON CARRITO -->
+
+<button class="carrito-btn" onclick="abrirCarrito()">
+🛒
+</button>
+
+<!-- POPUP -->
+
+<div class="popup" id="popup">
+
+<h2>✅ Producto agregado</h2>
+
+<p>
+Tu producto fue agregado al carrito
+</p>
+
+<button class="btn" onclick="abrirCarrito()">
+Ver carrito
+</button>
+
+<br><br>
+
+<button class="btn"
+style="background:#444;color:white"
+onclick="cerrarPopup()">
+Seguir comprando
+</button>
+
+</div>
+
+<!-- MODAL CARRITO -->
+
+<div class="modal" id="modalCarrito">
+
+<div class="carrito-box">
+
+<div class="lista">
+
+<h2>Carrito de compras</h2>
+
+<div id="itemsCarrito"></div>
+
+</div>
+
+<div class="resumen">
+
+<h2>Resumen</h2>
+
+<br>
+
+<label>Región</label>
+
+<select>
+<option>Región Metropolitana</option>
+<option>Valparaíso</option>
+<option>Biobío</option>
+</select>
+
+<label>Tipo de envío</label>
+
+<select>
+<option>Envío normal - $3.990</option>
+<option>Envío express - $6.990</option>
+</select>
+
+<div class="total" id="total">
+$0
+</div>
+
+<label>
+Cupón de descuento
+</label>
+
+<div class="cupon-box">
+
+<input
+id="cupon"
+type="text"
+placeholder="Ingresa tu cupón">
+
+<button onclick="aplicarCupon()">
+Agregar Dcto
+</button>
+
+</div>
+
+<button class="btn" onclick="pagar()">
+Continuar al pago
+</button>
+
+<br><br>
+
+<button class="btn"
+style="background:#444;color:white"
+onclick="cerrarCarrito()">
+Cerrar
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HISTORIA -->
+
+<div class="historia-modal" id="historiaModal">
+
+<div class="historia-box">
+
+<button class="cerrar-historia"
+onclick="cerrarHistoria()">
+✕
+</button>
+
+<div class="historia-scroll">
+
+<h2>
+La Tiendita de Leo y Lali
+</h2>
+
+<p>
+Todo comenzó creando regalos personalizados para amigos y familiares.
+</p>
+
+<p>
+Con el tiempo el proyecto comenzó a crecer gracias al apoyo de nuestros clientes.
+</p>
+
+<p>
+Hoy buscamos entregar productos premium, modernos y únicos para cada persona.
+</p>
+
+<p>
+Gracias por ser parte de esta historia ❤️
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let carrito = [];
+let descuentoAplicado = false;
+
+/* AGREGAR PRODUCTO */
+
+function agregarProducto(nombre,precio,imagen){
+
+const existe = carrito.find(
+p => p.nombre === nombre
+);
+
+if(existe){
+
+existe.cantidad++;
+
+}else{
+
+carrito.push({
+nombre,
+precio,
+imagen,
+cantidad:1
+});
+
+}
+
+renderCarrito();
+
+document.getElementById('popup').style.display='block';
+
+}
+
+/* POPUP */
+
+function cerrarPopup(){
+
+document.getElementById('popup').style.display='none';
+
+}
+
+/* CARRITO */
+
+function abrirCarrito(){
+
+document.getElementById('modalCarrito').style.display='flex';
+
+cerrarPopup();
+
+}
+
+function cerrarCarrito(){
+
+document.getElementById('modalCarrito').style.display='none';
+
+}
+
+/* CANTIDAD */
+
+function cambiarCantidad(index,cambio){
+
+carrito[index].cantidad += cambio;
+
+if(carrito[index].cantidad <= 0){
+
+carrito.splice(index,1);
+
+}
+
+renderCarrito();
+
+}
+
+/* RENDER */
+
+function renderCarrito(){
+
+const contenedor =
+document.getElementById('itemsCarrito');
+
+contenedor.innerHTML='';
+
+let total = 0;
+
+carrito.forEach((producto,index)=>{
+
+total += producto.precio * producto.cantidad;
+
+contenedor.innerHTML += `
+
+<div class="item">
+
+<div class="item-left">
+
+<img src="${producto.imagen}">
+
+<div>
+
+<h3>${producto.nombre}</h3>
+
+<p>
+$${producto.precio.toLocaleString('es-CL')}
+</p>
+
+</div>
+
+</div>
+
+<div class="cantidad">
+
+<button onclick="cambiarCantidad(${index},-1)">
+-
+</button>
+
+<span>
+${producto.cantidad}
+</span>
+
+<button onclick="cambiarCantidad(${index},1)">
++
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById('total').innerText =
+'$' + total.toLocaleString('es-CL');
+
+}
+
+/* CUPON */
+
+function aplicarCupon(){
+
+const codigo =
+document.getElementById('cupon').value;
+
+if(
+codigo === 'DCTOLALILEO10%'
+&& !descuentoAplicado
+){
+
+descuentoAplicado = true;
+
+let totalTexto =
+document.getElementById('total')
+.innerText
+.replace('$','')
+.replace(/\./g,'');
+
+let total = parseInt(totalTexto);
+
+let nuevoTotal =
+total - (total * 0.10);
+
+document.getElementById('total').innerText =
+'$' + Math.round(nuevoTotal)
+.toLocaleString('es-CL');
+
+alert('✅ Descuento aplicado');
+
+}else{
+
+alert('❌ Cupón inválido o ya usado');
+
+}
+
+}
+
+/* PAGO */
+
+function pagar(){
+
+alert('Aquí iría Mercado Pago real');
+
+}
+
+/* HISTORIA */
+
+function abrirHistoria(){
+
+document.getElementById(
+'historiaModal'
+).style.display='flex';
+
+}
+
+function cerrarHistoria(){
+
+document.getElementById(
+'historiaModal'
+).style.display='none';
+
+}
+
+</script>
+
+</body>
+</html>
